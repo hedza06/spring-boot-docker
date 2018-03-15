@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: Dockerizing Spring Boot Application
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://sp-db:3306/docker?useUnicode=true&characterEncoding=utf8&useSSL=false
+    name: docker
+    username: root
+    password: root
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+    database: MYSQL
+    show_sql: false
+    properties:
+        hibernate.cache.use_second_level_cache: false
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: true
+  jackson:
+        serialization:
+          write_dates_as_timestamps: false
+  liquibase:
+      change-log: classpath:liquibase/master.xml
+server:
+  servlet:
+    context-path: /api
+  port: 8080
+debug: true
